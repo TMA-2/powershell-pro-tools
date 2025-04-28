@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-VSCodeTextDocument
 
 ## SYNOPSIS
-Returns a list of currently open documents.
+Returns a list of currently active documents in the current workspace.
 
 ## SYNTAX
 
