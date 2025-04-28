@@ -164,4 +164,5 @@ If `-PassThru` or `-OutputMode <Single, Multiple>` is used, sends the selected i
 ## NOTES
 
 ## RELATED LINKS
-https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/out-gridview?view=powershell-7.4&viewFallbackFrom=powershell-7.3&WT.mc_id=ps-gethelp
+[PoshTools Documentation - Automating Visual Studio Code](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code)
+[PowerShell Documentation - Out-GridView](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/out-gridview?view=powershell-7.4&viewFallbackFrom=powershell-7.3&WT.mc_id=ps-gethelp)

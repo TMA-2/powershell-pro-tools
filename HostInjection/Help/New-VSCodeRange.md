@@ -144,4 +144,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 The four required parameters are 0-index, meaning they're 1 less than the visible editor lines and columns.
 
 ## RELATED LINKS
-https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code
+[PoshTools Documentation - Automating Visual Studio Code](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code)

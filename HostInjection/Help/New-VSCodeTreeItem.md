@@ -152,4 +152,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/powershell-explorer#custom-tree-view
+[PoshTools Documentation - VSCode Custom Tree View](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/powershell-explorer#custom-tree-view)
