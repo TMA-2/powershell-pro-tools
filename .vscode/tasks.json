@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Solution (Debug)",
+      "command": "powershell",
+      "type": "process",
+      "args": [
+        "-ExecutionPolicy Bypass",
+        "-File ${workspaceFolder}/build.ps1",
+        "-Configuration",
+        "Debug"
+      ],
+      "isBuildCommand": true,
+      "problemMatcher": [
+        "$msCompile"
+      ],
+      "group": "build"
+    }
+  ],
+}

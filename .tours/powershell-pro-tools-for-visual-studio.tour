@@ -8,11 +8,11 @@
     },
     {
       "title": "Requirements",
-      "description": "### Requirements\r\n- [.NET](https://dotnet.microsoft.com/en-us/download)\r\n- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/)\r\n  - .NET Desktop Development Workload\r\n  - Visual Studio Extensibility Workload\r\n- [InvokeBuild](https://github.com/nightroman/Invoke-Build)"
+      "description": "### Requirements\r\n- [.NET](https://dotnet.microsoft.com/en-us/download)\r\n- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/)\r\n  - .NET Desktop Development Workload\r\n  - Visual Studio Extensibility Workload\r\n- [InvokeBuild](https://www.powershellgallery.com/packages/InvokeBuild/)"
     },
     {
       "title": "Build Process",
-      "description": "Start Visual Studio as Administrator. Administrator access is required because the PowerShell Pro Tools build copies files into the Visual Studio directory for debugging purposes.\r\n\r\nBuild the `PowerShellTools` project to build the *Visual Studio 2019* extension and the `PowerShellTools.2022` to build the *Visual Studio 2022* and later extension."
+      "description": "Start Visual Studio as Administrator. Administrator access is required because the PowerShell Pro Tools build copies files into the Visual Studio directory for debugging purposes.\r\n\r\nBuild the `PowerShellTools` project to build the *Visual Studio 2019* extension and the `PowerShellTools.2022` to build the *Visual Studio 2022* and later extension.\r\n- `\\PowerShellTools\\prebuild.ps1`\r\n- `\\PowerShellTools.2022\\prebuild.ps1`\r\n- `\\PowerShellTools\\PowerShellTools.csproj`\r\n- `\\PowerShellTools.2022\\PowerShellTools.2022.csproj`"
     },
     {
       "title": "Debugging",
@@ -28,7 +28,23 @@
     },
     {
       "directory": "HostInjection",
-      "description": "Refactoring used in both the VS and VS Code extensions."
+      "description": "Refactoring used in both the VS and VS Code extensions. This contains much of the Ironman PowerShell Host functionality accessed by the three extensions, especially `PoshToolsServer.cs`."
+    },
+    {
+      "title": "PoshToolsServer",
+      "description": "`PoshToolsServer.cs` contains the `PowerShellToolsPro.PoshToolsServer` class that handles communication between the Visual Studio and VSCode extensions.",
+      "file": "HostInjection/PoshToolsServer.cs",
+      "pattern": "[\\s\\t]*public void Start\\(string pipeName\\)",
+      "selection": {
+        "start": {
+          "line": 72,
+          "character": 9
+        },
+        "end": {
+          "line": 72,
+          "character": 43
+        }
+      }
     },
     {
       "directory": "PowerShellTools.Shared",

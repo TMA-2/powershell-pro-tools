@@ -1,0 +1,29 @@
+{
+  "recommendations": [
+    // PowerShell
+    "ms-vscode.powershell",
+    // C# / .NET
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "formulahendry.dotnet-test-explorer",
+    // Visual Studio support
+    "fernandoescolar.vscode-solution-explorer",
+    "tintoy.msbuild-project-tools",
+    // XML / Markup
+    "redhat.vscode-xml",
+    // Markdown
+    "yzhang.markdown-all-in-one",
+    "fcrespo82.markdown-table-formatter",
+    "bierner.markdown-preview-github-styles",
+    // JS/TS
+    "ms-vscode.extension-test-runner",
+    "dbaeumer.vscode-eslint",
+    // Utilities
+    "EditorConfig.EditorConfig",
+    "vsls-contrib.codetour",
+  ],
+  "unwantedRecommendations": [
+    "eg2.tslint"  // Deprecated in favor of eslint
+  ]
+}

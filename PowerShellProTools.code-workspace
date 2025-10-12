@@ -1,20 +1,61 @@
 {
 	"folders": [
 		{
-			"name": "PS Pro Tools",
-			"path": "..\\powershell-pro-tools"
-		},
+			"path": "."
+		}
 	],
 	"settings": {
+    "editor.formatOnSaveMode": "modifications",
 		"files.exclude": {
-			"**/*.rpyc": true,
-			"**/*.rpa": true,
-			"**/*.rpymc": true,
-			"**/cache/": true
+			"**/bin/": true,
+			"**/obj/": true,
+			"**/cache/": true,
+			"**/node_modules/": true,
+			"**/package-lock.json": true,
 		},
+    //#region Language Specific Settings
+    "[powershell]": {
+      "editor.autoIndent": "advanced",
+      "editor.detectIndentation": false,
+      "editor.indentSize": "tabSize",
+      "editor.tabSize": 4,
+      "editor.defaultFormatter": "ms-vscode.powershell",
+      "editor.defaultFoldingRangeProvider": "ms-vscode.powershell",
+      "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+      "editor.semanticHighlighting.enabled": "configuredByTheme",
+      // "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
+    },
 		"[csharp]": {
-			"editor.maxTokenizationLineLength": 2500
+      "editor.autoIndent": "advanced",
+      "editor.detectIndentation": false,
+      "editor.indentSize": "tabSize",
+      "editor.tabSize": 4,
+			"editor.defaultFormatter": "ms-dotnettools.csharp",
+			"editor.defaultFoldingRangeProvider": "ms-dotnettools.csharp",
+      "editor.formatOnType": true,
+      "editor.formatOnPaste": false,
+      "editor.formatOnSave": true,
+      "editor.formatOnSaveMode": "modifications",
 		},
+    "[javascript][typescript]": {
+      "editor.autoIndent": "advanced",
+      "editor.detectIndentation": false,
+      "editor.indentSize": "tabSize",
+      "editor.tabSize": 2,
+      "editor.snippetSuggestions": "bottom",
+      "editor.suggest.localityBonus": true,
+      "editor.formatOnType": true,
+      "editor.formatOnPaste": false,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "vscode.typescript-language-features",
+      "editor.defaultFoldingRangeProvider": "vscode.typescript-language-features",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.ts": "explicit",
+        "source.addMissingImports.ts": "explicit",
+        "source.organizeImports": "explicit"
+      }
+    },
+    //#endregion Language Specific Settings
 		"powershell.sideBar.CommandExplorerVisibility": false,
 		"powershell.buttons.showPanelMovementButtons": false,
 		"powershell.pester.codeLens": true,
@@ -22,9 +63,11 @@
 		"powershell.cwd": "Source",
 		"powershell.developer.editorServicesLogLevel": "Information",
 		"powershell.trace.server": "messages",
-		"dotnet.defaultSolution": "Source/powershell-pro-tools",
+		"dotnet.defaultSolution": "PowerShellTools.sln",
 		"dotnet.preferCSharpExtension": false,
-		"xml.fileAssociations": [
+    "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj|pssproj)",
+		"xmlTools.enableXmlTreeViewCursorSync": true,
+    "xml.fileAssociations": [
 			{
 				"pattern": "**/*.csproj",
 				"systemId": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Microsoft.Build.xsd",
@@ -49,5 +92,40 @@
 		],
 		// "xml.format.xsiSchemaLocationSplit": "none",
 		"todo-tree.tree.scanMode": "open files"
-	}
+	},
+  "extensions": {
+    "recommendations": [
+      // PowerShell
+      "ms-vscode.powershell",
+      "TylerLeonhardt.vscode-inline-values-powershell",
+      // C#
+      "ms-dotnettools.csharp",
+      "ms-dotnettools.csdevkit",
+      "ms-dotnettools.vscode-dotnet-runtime",
+      "formulahendry.dotnet-test-explorer",
+      // XML / Markup
+      "redhat.vscode-xml",
+      "redhat.vscode-yaml",
+      "DotJoshJohnson.xml",
+      // Markdown
+      "yzhang.markdown-all-in-one",
+      "fcrespo82.markdown-table-formatter",
+      "bierner.markdown-preview-github-styles",
+      // Visual Studio support
+      "fernandoescolar.vscode-solution-explorer",
+      "tintoy.msbuild-project-tools",
+      // JS/TS
+      "ms-vscode.extension-test-runner",
+      "dbaeumer.vscode-eslint",
+      // GitHub
+      "yy0931.gitconfig-lsp",
+      "github.vscode-github-actions",
+      "GitHub.vscode-pull-request-github",
+      // Utilities
+      "EditorConfig.EditorConfig",
+      "vsls-contrib.codetour",
+      "alefragnani.Bookmarks",
+      "alefragnani.separators",
+    ]
+  }
 }
