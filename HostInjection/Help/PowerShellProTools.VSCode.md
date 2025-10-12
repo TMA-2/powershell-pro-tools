@@ -8,87 +8,90 @@ Locale: en-US
 
 # PowerShellProTools.VSCode Module
 ## Description
-{{ Fill in the Description }}
+This module contains cmdlets primarily for interacting with the VSCode extension.
+Some interact with text and decorations in the editor, some are used by extension commands such as
+`Start-PoshToolsServer` or `Measure-Script`, and others offer extra interaction with VSCode not available to the
+standard PowerShell extension (e.g. `Show-VSCodeInputBox`).
 
 ## PowerShellProTools.VSCode Cmdlets
 ### [Add-VSCodeTextDocumentText](Add-VSCodeTextDocumentText.md)
-{{ Fill in the Description }}
+Inserts text into a particular position in the selected document. This creates an edit but does not save the file.
 
 ### [Clear-VSCodeDecoration](Clear-VSCodeDecoration.md)
-{{ Fill in the Description }}
+Clear decorations created by Set-VSCodeTextEditorDecoration.
 
 ### [Get-CompletionItem](Get-CompletionItem.md)
-{{ Fill in the Description }}
+TODO
 
 ### [Get-PoshToolsVariable](Get-PoshToolsVariable.md)
-{{ Fill in the Description }}
+TODO
 
 ### [Get-VSCodeTerminal](Get-VSCodeTerminal.md)
-{{ Fill in the Description }}
+Retrieves a list of open terminals.
 
 ### [Get-VSCodeTextDocument](Get-VSCodeTextDocument.md)
-{{ Fill in the Description }}
+Returns a list of currently open documents.
 
 ### [Get-VSCodeTextDocumentText](Get-VSCodeTextDocumentText.md)
-{{ Fill in the Description }}
+Gets the text of a document.
 
 ### [Get-VSCodeTextEditor](Get-VSCodeTextEditor.md)
-{{ Fill in the Description }}
+Retrieves the currently visible text editor.
 
 ### [Measure-Block](Measure-Block.md)
-{{ Fill in the Description }}
+TODO
 
 ### [Measure-Script](Measure-Script.md)
-{{ Fill in the Description }}
+TODO
 
 ### [New-VSCodeDecorationAttachment](New-VSCodeDecorationAttachment.md)
-{{ Fill in the Description }}
+TODO
 
 ### [New-VSCodePosition](New-VSCodePosition.md)
-{{ Fill in the Description }}
+Returns a position in a given document.
 
 ### [New-VSCodeRange](New-VSCodeRange.md)
-{{ Fill in the Description }}
+Returns a range between start and end positions.
 
 ### [New-VSCodeTreeItem](New-VSCodeTreeItem.md)
-{{ Fill in the Description }}
+Creates a child tree item under a custom TreeView.
 
 ### [Open-VSCodeTextDocument](Open-VSCodeTextDocument.md)
-{{ Fill in the Description }}
+Opens documents by file name.
 
 ### [Out-PoshToolsVariable](Out-PoshToolsVariable.md)
-{{ Fill in the Description }}
+TODO
 
 ### [Out-VSCodeGridView](Out-VSCodeGridView.md)
-{{ Fill in the Description }}
+Displays data in a grid view similar to Out-GridView, except in a VS Code web view.
 
 ### [Register-VSCodeTreeView](Register-VSCodeTreeView.md)
-{{ Fill in the Description }}
+Creates a TreeView entry in the Custom view.
 
 ### [Remove-VSCodeTextDocumentText](Remove-VSCodeTextDocumentText.md)
-{{ Fill in the Description }}
+Removes a range of text from a document.
 
 ### [Remove-VSCodeTextEditor](Remove-VSCodeTextEditor.md)
-{{ Fill in the Description }}
+Close editors that are already open.
 
 ### [Send-VSCodeTerminalText](Send-VSCodeTerminalText.md)
-{{ Fill in the Description }}
+Sends text to the specified terminal.
 
 ### [Set-VSCodeStatusBarMessage](Set-VSCodeStatusBarMessage.md)
-{{ Fill in the Description }}
+Sets a status bar message.
 
 ### [Set-VSCodeTextEditorDecoration](Set-VSCodeTextEditorDecoration.md)
-{{ Fill in the Description }}
+Decorates a range of text with an optional set of colors, outlines, borders, and text.
 
 ### [Show-VSCodeInputBox](Show-VSCodeInputBox.md)
-{{ Fill in the Description }}
+Shows an input box for the user to enter arbitrary text.
 
 ### [Show-VSCodeMessage](Show-VSCodeMessage.md)
-{{ Fill in the Description }}
+Show a message to the user and provide an option for them to select.
 
 ### [Show-VSCodeQuickPick](Show-VSCodeQuickPick.md)
-{{ Fill in the Description }}
+Shows a quick pick list for a user to select items from.
 
 ### [Start-PoshToolsServer](Start-PoshToolsServer.md)
-{{ Fill in the Description }}
+Starts the main PoshTools Server for the extension to connect to.
 

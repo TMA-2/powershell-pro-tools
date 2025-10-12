@@ -75,5 +75,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Unlike Get-VSCodeTextDocument, this only returns the open editors that are currently visible.
 
 Each item has a Document and LanguageId property. The Document property is actually VSCodeTextDocument, which can be piped to any cmdlet that accepts Get-VSCodeTextDocument.
+
 ## RELATED LINKS
-https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code
+[PoshTools Documentation - Automating Visual Studio Code](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code)

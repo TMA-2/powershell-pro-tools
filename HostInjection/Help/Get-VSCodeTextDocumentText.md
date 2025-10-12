@@ -110,5 +110,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object
 ## NOTES
 The lines and characters used in -Range are 0-index (like an array), so for instance, to get line 10 in the editor, you'd actually specify line 9.
+
 ## RELATED LINKS
-https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code
+[PoshTools Documentation - Automating Visual Studio Code](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code)

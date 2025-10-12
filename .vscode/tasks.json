@@ -16,6 +16,15 @@
         "$msCompile"
       ],
       "group": "build"
+    },
+    {
+      "type": "npm",
+      "script": "compile",
+      "path": "vscode/powershellprotools",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: compile - vscode/powershellprotools",
+      "detail": "tsc -p ./"
     }
   ],
 }

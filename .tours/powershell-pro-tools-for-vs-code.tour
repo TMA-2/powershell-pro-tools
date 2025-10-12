@@ -4,62 +4,58 @@
   "steps": [
     {
       "title": "Overview",
-      "description": "PowerShell Pro Tools is a collection of extensions for Visual Studio and Visual Studio Code to enhance the PowerShell editing experience.\r\n\r\nIt includes tools that do the following:\r\n\r\n- Windows Form Designer for PowerShell\r\n- PowerShell Script Executable Packaging\r\n- Refactoring\r\n- Variable Window\r\n- Module Window"
+      "description": "### Overview\r\n> PowerShell Pro Tools is a collection of extensions for Visual Studio and Visual Studio Code to enhance the PowerShell editing experience.\r\n\r\nIt includes tools that do the following:\r\n\r\n- Windows Form Designer for PowerShell\r\n- PowerShell Script Executable Packaging\r\n- Refactoring\r\n- Variable Window\r\n- Module Window"
     },
     {
       "title": "Requirements",
-      "description": "You'll need the following installed:\r\n- [VS Code](https://code.visualstudio.com/)\r\n- [NodeJS](https://nodejs.org/en)\r\n- [.NET](https://dotnet.microsoft.com/en-us/download)\r\n- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/)\r\n- [InvokeBuild](https://github.com/nightroman/Invoke-Build)"
+      "description": "### Requirements\r\nYou'll need the following installed:\r\n- [VS Code](https://code.visualstudio.com/)\r\n- [NodeJS](https://nodejs.org/en)\r\n- [.NET](https://dotnet.microsoft.com/en-us/download)\r\n- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/)\r\n- [InvokeBuild](https://github.com/nightroman/Invoke-Build)"
     },
     {
       "title": "Build Process",
-      "description": "You can use the `./vscode/vscode.build.ps1` build script to build the extension. It will install the necessary NPM\r\npackages, build the .NET libraries and package the VSIX.\r\n```ps1\r\nSet-Location ./vscode\r\nInvoke-Build\r\n```",
+      "description": "### Build Process\r\nYou can use the `./vscode/vscode.build.ps1` build script to build the extension. It will install the necessary NPM\r\npackages, build the .NET libraries and package the VSIX.\r\n```ps1\r\nSet-Location ./vscode\r\nInvoke-Build\r\n```",
+      "directory": "vscode",
       "file": "vscode/vscode.build.ps1",
-      "line": 1
+      "pattern": "^task BuildExtension \\{"
     },
     {
       "title": "Debugging",
-      "description": "You will need to run the `./vscode/vscode.build.ps1` script once to ensure all the proper binaries are generated. Once this is done, you can open VS Code in the `./vscode/powershellprotools` directory.\r\n```ps1\r\ncode ./vscode/powershellprotools\r\n```\r\nOnce open, you can begin debugging by pressing `F5`. You can set breakpoints and step through the extension.",
+      "description": "### Build Process\r\nYou will need to run the `./vscode/vscode.build.ps1` script once to ensure all the proper binaries are generated. Once this is done, you can open VS Code in the `./vscode/powershellprotools` directory.\r\n```ps1\r\ncode ./vscode/powershellprotools\r\n```\r\nOnce open, you can begin debugging by pressing `F5`. You can set breakpoints and step through the extension.",
       "file": "vscode/vscode.build.ps1",
-      "line": 1
+      "pattern": "^Pop-Location"
     },
     {
-      "title": "VS Code Extension",
+      "title": "#5 - VS Code Extension",
       "description": "### VS Code Extension\r\nThe Typescript project that integrates with Visual Studio Code.",
       "directory": "vscode/powershellprotools/src",
       "file": "vscode/powershellprotools/src/extension.ts",
-      "pattern": "[\\s\\t]*export async function activate\\(.*\\) {",
-      "line": 52
+      "pattern": "^export async function activate\\(context: vscode\\.ExtensionContext\\) \\{"
     },
     {
-      "title": "Host Injection",
-      "description": "### VS Code Module\r\nThe .NET DLL that is loaded into the PowerShell Extension terminal. This includes the bulk of the functionality and the Named Pipe Server that accepts commands from the VS Code extension. This includes the implementation for features such as:\r\n\r\n- Refactoring\r\n- Profiling\r\n- Code Decompilation\r\n- VS Code Automation Cmdlets.",
+      "title": "#6 - VS Code Module",
       "directory": "HostInjection",
       "file": "HostInjection/PoshToolsServer.cs",
-      "pattern": "[\\s\\t]*public void Start\\(string pipeName\\)",
-      "line": 72
+      "line": 72,
+      "pattern": "\\s+public void Start\\(",
+      "description": "### VS Code Module\r\nThe .NET DLL that is loaded into the PowerShell Extension terminal. This includes the bulk of the functionality and the Named Pipe Server that accepts commands from the VS Code extension. This includes the implementation for features such as:\r\n\r\n- Refactoring\r\n- Profiling\r\n- Code Decompilation\r\n- VS Code Automation Cmdlets"
     },
     {
-      "title": "PowerShell Pro Tools Module",
-      "directory": "PowerShellToolsPro.Cmdlets",
+      "title": "#7 - PowerShell Pro Tools Module",
       "description": "### PowerShell Pro Tools Module\r\nThis module is included with the extension and used for packaging PowerShell scripts into executables.",
+      "directory": "PowerShellToolsPro.Cmdlets",
       "file": "PowerShellToolsPro.Cmdlets/PowerShellProTools.psd1",
-      "line": 1
+      "pattern": "^Description\\s*="
     },
     {
-      "title": "Windows Form Designer",
-      "directory": "WinFormDesigner",
+      "title": "#8 - Windows Form Designer",
       "description": "### Windows Form Designer\r\nThe Windows Form Designer executable.",
+      "directory": "WinFormDesigner",
       "file": "WinFormDesigner/WinFormDesigner.cs",
-      "pattern": "[\\s\\t]*public frmWinFormDesigner\\(.*\\) {",
-      "line": 21
+      "pattern": "\\s*public frmWinFormDesigner\\(string codeFile, string designerFile\\)"
     },
     {
-      "title": "Windows Form Designer Library",
-      "directory": "FormDesigner",
+      "title": "#9 - Windows Form Designer Library",
       "description": "### Windows Form Designer Library\r\nThe bulk of the form designer parsing and generation logic.",
-      "file": "FormDesigner/frmMain.cs",
-      "pattern": "[\\s\\t]*public frmMain\\(.*\\) {",
-      "line": 39
+      "directory": "FormDesigner"
     }
   ]
 }

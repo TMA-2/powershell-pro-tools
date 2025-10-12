@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-VSCodeTextDocument
 
 ## SYNOPSIS
-Returns a list of currently open documents.
+Returns a list of currently active documents in the current workspace.
 
 ## SYNTAX
 
@@ -83,4 +83,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Returns all open document paths, containing one FileName property.
 
 ## RELATED LINKS
-https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code
+[PoshTools Documentation - Automating Visual Studio Code](https://docs.poshtools.com/powershell-pro-tools-documentation/visual-studio-code/automating-visual-studio-code)

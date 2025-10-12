@@ -1,53 +1,65 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "VS2022 Extension - Prebuild",
-        "type": "PowerShell",
-        "request": "launch",
-        "args": [
-          "-ExecutionPolicy",
-          "Bypass",
-          "-File",
-          "${workspaceFolder}/PowerShellTools.2022/prebuild.ps1",
-        ],
-        "presentation": {
-          "hidden": false,
-          "group": "Build",
-          "order": 1
-        }
-      },
-      {
-        "name": "VS2022 Extension - Build",
-        "type": "PowerShell",
-        "request": "launch",
-        "args": [
-          "-ExecutionPolicy",
-          "Bypass",
-          "-Command",
-          "dotnet build ${workspaceFolder}/PowerShellTools.2022/PowerShellTools.2022.csproj"
-        ],
-        "presentation": {
-          "hidden": false,
-          "group": "Build",
-          "order": 2
-        }
-      },
-      {
-        "name": "VSCode Extension - Build",
-        "type": "PowerShell",
-        "request": "launch",
-        "args": [
-          "-ExecutionPolicy",
-          "Bypass",
-          "-Command",
-          "Set-Location '${workspaceFolder}/vscode'"
-        ],
-        "script": "${workspaceFolder}/vscode/vscode.build.ps1",
-        "createTemporaryIntegratedConsole": true
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "VS2022 Extension - Prebuild",
+      "type": "PowerShell",
+      "request": "launch",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/PowerShellTools.2022/prebuild.ps1",
+      ],
+      "presentation": {
+        "hidden": false,
+        "group": "Build",
+        "order": 1
       }
-    ]
+    },
+    {
+      "name": "VS2022 Extension - Build",
+      "type": "PowerShell",
+      "request": "launch",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "dotnet build ${workspaceFolder}/PowerShellTools.2022/PowerShellTools.2022.csproj"
+      ],
+      "presentation": {
+        "hidden": false,
+        "group": "Build",
+        "order": 2
+      }
+    },
+    {
+      "name": "VSCode Extension - Build",
+      "type": "PowerShell",
+      "request": "launch",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location '${workspaceFolder}/vscode'"
+      ],
+      "script": "${workspaceFolder}/vscode/vscode.build.ps1",
+      "createTemporaryIntegratedConsole": true
+    },
+    {
+      "name": "Launch Extension",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js"
+      ],
+      // "preLaunchTask": "npm",
+      "request": "launch",
+      "type": "extensionHost"
+    }
+  ]
 }
