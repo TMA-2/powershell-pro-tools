@@ -15,22 +15,46 @@ export class QuickScriptCommands implements ICommand {
         return vscode.commands.registerCommand('poshProTools.addQuickScript', async () => {
             if (!Container.IsInitialized()) return;
 
+            let filePath: string | undefined;
+            let workspacePath = vscode.workspace.workspaceFolders?.[0].uri;
             const editor = vscode.window.activeTextEditor;
 
-            if (!editor) {
-                vscode.window.showErrorMessage("Please select a file to add as a Quick Script.");
+            if (editor) {
+                filePath = editor.document.fileName;
+            }
+            else if (workspacePath) {
+                vscode.window.showWarningMessage("No active editor file. Please select a file to add as a Quick Script.");
+                const files = await vscode.window.showOpenDialog({
+                    title: "Select a file to add to Quick Scripts",
+                    openLabel: "Add Quick Script",
+                    defaultUri: workspacePath,
+                    canSelectMany: false,
+                    filters: {
+                        "PowerShell": ["ps1", "psm1", "psd1"]
+                    }
+                });
+
+                if (!files || files.length === 0) {
+                    return;
+                }
+
+                filePath = files[0].fsPath;
+            }
+            else {
+                vscode.window.showErrorMessage("No active editor file nor workspace folder. Please select a file to add as a Quick Script.");
                 return;
             }
 
             var name = await vscode.window.showInputBox({
-                prompt: "Please enter the name for this Quick Script"
+                prompt: "Please enter the name for this Quick Script",
+                // placeHolder: filePath.split("\\").pop().match(/(.+)\.\w+$/)?.[0] || "Quick Script"
             });
 
             if (!name || name === "") {
                 return;
             }
 
-            await Container.QuickScriptService.setScript(name, editor.document.fileName);
+            await Container.QuickScriptService.setScript(name, filePath);
 
             vscode.window.showInformationMessage(`${name} was added to Quick Scripts`);
 
