@@ -4,7 +4,7 @@ using PowerShellToolsPro.Cmdlets.VSCode;
 
 namespace PowerShellToolsPro.VSCode
 {
-    public class TreeViewService 
+    public class TreeViewService
     {
         private static TreeViewService _instance;
 
@@ -45,22 +45,29 @@ namespace PowerShellToolsPro.VSCode
             var treeView = _treeViews[treeViewId];
             if (treeView.LoadChildren == null) yield break;
 
-            var treeItem = treeView._treeItemCache.ContainsKey(path) ? treeView._treeItemCache[path] : null;
+            path = path ?? string.Empty;
 
-            var treeItems = treeView.LoadChildren.Invoke(treeItem).Select(m => m.BaseObject).OfType<TreeItem>();
-            foreach(var childItem in treeItems)
+            var parentItem = treeView._treeItemCache.ContainsKey(path) ? treeView._treeItemCache[path] : null;
+
+            var treeItems = treeView.LoadChildren.Invoke(parentItem).Select(m => m.BaseObject).OfType<TreeItem>();
+            foreach (var childItem in treeItems)
             {
-                if (childItem != null && !string.IsNullOrEmpty(path))
-                    childItem.Path = path + "\\";
-                childItem.Path += childItem.Label;
+                if (childItem == null) continue;
+
+                // Compose a stable, predictable path
+                childItem.Path = string.IsNullOrEmpty(path)
+                    ? childItem.Label
+                    : path + "\\" + childItem.Label;
+
                 childItem.TreeViewId = treeViewId;
                 childItem.CanInvoke = treeView.InvokeChild != null && !childItem.DisableInvoke;
 
                 if (treeView._treeItemCache.ContainsKey(childItem.Path))
                 {
-                    treeView._treeItemCache[treeItem.Path] = childItem;
+                    // BUGFIX: update the child by its own path, not the parent’s path
+                    treeView._treeItemCache[childItem.Path] = childItem;
                 }
-                else 
+                else
                 {
                     treeView._treeItemCache.Add(childItem.Path, childItem);
                 }
@@ -75,7 +82,7 @@ namespace PowerShellToolsPro.VSCode
             if (treeView.InvokeChild == null) return;
 
             var treeItem = treeView._treeItemCache[path];
-            
+
             treeView.InvokeChild.Invoke(treeItem);
         }
     }

@@ -21,7 +21,7 @@ namespace PowerShellToolsPro.Packager
                 new BundleStage(),
                 new CompileStage(),
                 new UpdateHostStage(),
-                new ObfucatorStage()
+                new ObfuscatorStage()
             };
 
 	        foreach (var stage in _stages)
@@ -372,7 +372,7 @@ namespace PowerShellToolsPro.Packager
         }
     }
 
-    public class ObfucatorStage : Stage
+    public class ObfuscatorStage : Stage
     {
 		public override bool ShouldExecute(PackageProcess process, StageResult previousStage)
         {

@@ -436,7 +436,7 @@ namespace PowerShellToolsPro
             var script = @"
                 Get-Runspace | ForEach-Object {
                     $h = $_.GetType().GetProperty('Host', [System.Reflection.BindingFlags]::Instance -bor [System.Reflection.BindingFlags]::NonPublic).GetValue($_)
-                    if ($h.Name -eq 'Visual Studio Code Host') 
+                    if ($h.Name -eq 'Visual Studio Code Host')
                     {
                         $_.Id
                     }
@@ -477,14 +477,14 @@ namespace PowerShellToolsPro
 
             var script = $@"
 $RS = Get-Runspace -Id {id}
-$RS.Events.SubscribeEvent($null, 'PowerShell.OnIdle',  'PowerShell.OnIdle', $null, {{ 
+$RS.Events.SubscribeEvent($null, 'PowerShell.OnIdle',  'PowerShell.OnIdle', $null, {{
         try {{
         $PSPCommand = [PowerShellProTools.CommandQueue]::GetCommand()
-        if ($PSPCommand) 
-        {{ 
+        if ($PSPCommand)
+        {{
             $PSPResults = Invoke-Expression $PSPCommand.Value
             [PowerShellProTools.CommandQueue]::SetResults($PSPResults, $PSPCommand)
-        }} 
+        }}
         }} catch {{ [PowerShellProTools.CommandQueue]::SetResults($_.ToString(), $PSPCommand) }}
     }}, $true, $false)";
 
@@ -645,6 +645,9 @@ $RS.Events.SubscribeEvent($null, 'PowerShell.OnIdle',  'PowerShell.OnIdle', $nul
             return new Variable[0];
         }
 
+        // Add this helper inside the PoshToolsServer class.
+        private static string EscapeForSingleQuotes(string input) => (input ?? string.Empty).Replace("'", "''");
+
         public IEnumerable<PSAssembly> GetAssemblies()
         {
             return ExecutePowerShell<PSAssembly>("[PowerShellToolsPro.Cmdlets.VSCode.PSAssembly]::GetAssemblies()");
@@ -766,7 +769,17 @@ $RS.Events.SubscribeEvent($null, 'PowerShell.OnIdle',  'PowerShell.OnIdle', $nul
 
         public IEnumerable<TreeItem> LoadChildren(string treeViewId, string path)
         {
-            var json = ExecutePowerShellMainRunspace<string>($"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.LoadChildren('{treeViewId}', '{path}') | ConvertTo-Json -WarningAction SilentlyContinue").First();
+            var idArg = EscapeForSingleQuotes(treeViewId);
+            var pathArg = EscapeForSingleQuotes(path);
+
+            var json = ExecutePowerShellMainRunspace<string>(
+                $"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.LoadChildren('{idArg}', '{pathArg}') | ConvertTo-Json -WarningAction SilentlyContinue"
+            ).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(json))
+            {
+                return Array.Empty<TreeItem>();
+            }
 
             if (json.StartsWith("["))
             {
@@ -804,12 +817,18 @@ $RS.Events.SubscribeEvent($null, 'PowerShell.OnIdle',  'PowerShell.OnIdle', $nul
 
         public void InvokeChild(string treeViewId, string path)
         {
-            ExecutePowerShellMainRunspace($"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.InvokeChild('{treeViewId}', '{path}')");
+            var idArg = EscapeForSingleQuotes(treeViewId);
+            var pathArg = EscapeForSingleQuotes(path);
+
+            ExecutePowerShellMainRunspace(
+                $"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.InvokeChild('{idArg}', '{pathArg}')"
+            );
         }
 
         public void RefreshTreeView(string treeViewId)
         {
-            ExecutePowerShell($"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.RefreshTreeView('{treeViewId}')");
+            var idArg = EscapeForSingleQuotes(treeViewId);
+            ExecutePowerShell($"[PowerShellToolsPro.VSCode.TreeViewService]::Instance.RefreshTreeView('{idArg}')");
         }
 
         public IEnumerable<string> GetHistory(int count)
